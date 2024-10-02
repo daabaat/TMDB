@@ -48,21 +48,25 @@ export default function Search() {
       />
 
       {/* 검색 결과 모달 */}
-      {showResults && (
-        <div className="search-results">
-          <div className="movie-grid">
-            {movies.map((movie) => (
-              <div
-                key={movie.id}
-                className="movie-card-wrapper"
-                onClick={() => handleMovieClick(movie)}
-              >
-                <MovieCard movie={movie} />
-              </div>
-            ))}
+      {showResults ? (
+        movies.length > 0 ? (
+          <div className="search-results">
+            <div className="movie-grid">
+              {movies.map((movie) => (
+                <div
+                  key={movie.id}
+                  className="movie-card-wrapper"
+                  onClick={() => handleMovieClick(movie)}
+                >
+                  <MovieCard movie={movie} />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        ) : (
+          <p>검색 결과가 없습니다.</p>
+        )
+      ) : null}
 
       {/* 영화 정보 모달 */}
       {showModal && (

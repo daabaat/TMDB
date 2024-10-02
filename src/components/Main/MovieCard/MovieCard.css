@@ -32,7 +32,6 @@
   overflow: hidden; /* 넘치는 부분 숨김 처리 */
   text-overflow: ellipsis; /* 넘치는 텍스트를 ...으로 대체 */
 }
-
 .movie-card .overview {
   font-size: 0.9em;
   color: #555;
@@ -40,7 +39,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-
+  -webkit-line-clamp: 3; /* 3줄로 제한 */
   -webkit-box-orient: vertical;
   position: relative;
 }
