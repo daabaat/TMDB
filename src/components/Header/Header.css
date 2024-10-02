@@ -1,0 +1,52 @@
+.header {
+  height: 60vh; /* 화면 높이의 60% */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  background-color: #121212;
+  overflow: hidden; /* 이미지가 삐져나오지 않도록 */
+}
+
+.header h1 {
+  color: white;
+  width: 20%;
+}
+
+.trend-movie-carousel {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden; /* 슬라이더 내 이미지가 부모 영역을 넘지 않도록 */
+}
+
+.slick-list {
+  padding: 0; /* 패딩 제거하여 이미지를 화면에 꽉 채움 */
+  height: 100%; /* slick 슬라이더의 높이를 부모 요소에 맞게 설정 */
+}
+
+.slick-slide {
+  display: flex !important; /* slick의 기본 display: block을 덮어쓰기 */
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.slider-item {
+  position: relative;
+  text-align: center;
+  height: 100%; /* 슬라이드 높이 */
+  width: 100%; /* 부모 요소의 가로를 꽉 채움 */
+}
+
+.main-poster {
+  width: 100%; /* 가로 크기를 100%로 설정 */
+  height: 60vh; /* 부모 요소에 맞게 높이를 설정 */
+  object-fit: cover; /* 이미지가 부모 요소의 크기에 맞게 채워지도록 설정 */
+  border-radius: 10px;
+}
+
+.main-poster:hover {
+  cursor: pointer;
+}

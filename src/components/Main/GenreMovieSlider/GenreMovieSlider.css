@@ -1,0 +1,22 @@
+.genre-movie-h2 {
+  margin: 0 0 30px 12%;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .genre-movie-h2 {
+    margin: 0 0 30px 8%;
+  }
+}
+
+.genre-movie-slider {
+  padding: 0; /* 내부 여백 제거 */
+  margin: 0; /* 외부 여백 제거 */
+  background-color: #121212;
+}
+
+.carousel-container {
+  width: 100%;
+  padding: 0;
+  margin-top: 30px;
+}
