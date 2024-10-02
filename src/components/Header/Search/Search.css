@@ -1,0 +1,25 @@
+.search-container {
+  position: relative;
+}
+
+.search-results {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-results p {
+  text-align: center;
+}
+
+.search-results .movie-card {
+  margin-bottom: 10px;
+}

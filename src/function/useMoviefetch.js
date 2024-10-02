@@ -1,6 +1,7 @@
 import { useReducer, useEffect } from "react";
 
 export default function useMoviefetch(genreId) {
+  const key = import.meta.env.VITE_API_KEY;
   const initState = {
     loading: false,
     error: null,
@@ -27,7 +28,7 @@ export default function useMoviefetch(genreId) {
       dispatch({ type: "LOADING" });
       try {
         const response = await fetch(
-          `https://api.themoviedb.org/3/discover/movie?api_key=a0e37bb376436cf45664b1fa59aa993d&language=ko-KR&with_genres=${genreId}`
+          `https://api.themoviedb.org/3/discover/movie?api_key=${key}&language=ko-KR&with_genres=${genreId}`
         );
         const data = await response.json();
         dispatch({ type: "SUCCESS", data: data.results });

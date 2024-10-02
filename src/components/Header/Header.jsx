@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "./Header.css"; // 스타일링을 위해 별도 파일 추가
 import Modal from "../Modal/Modal";
 import { useState } from "react";
+import Search from "./Search/Search";
 
 export default function Header() {
   const [selectedMovie, setSelectedMovie] = useState(null); // 선택한 영화 상태 관리
@@ -40,6 +41,7 @@ export default function Header() {
   return (
     <div className="header">
       <h1>지금 떠오르는 영화</h1>
+      <Search /> {/* 검색 컴포넌트 추가 */}
       {trendLoading && <p>로딩중 ...</p>}
       {trendError && <p>{trendError}</p>}
       {!trendLoading &&
