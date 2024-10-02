@@ -2,7 +2,7 @@
 
 ## 1. 프로젝트 소개
 
-- 배포 URL :
+- 배포 URL :https://dabat-tmdb.netlify.app
 
 ---
 
