@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import MovieCard from "../../Main/MovieCard/MovieCard";
 import "./Search.css"; // 검색창 스타일링 추가
+import Modal from "../../Modal/Modal";
 
 export default function Search() {
-  const [query, setQuery] = useState(""); // 검색어 상태
-  const [movies, setMovies] = useState([]); // 검색 결과 상태
-  const [showResults, setShowResults] = useState(false); // 검색 결과 표시 상태
+  const [query, setQuery] = useState("");
+  const [movies, setMovies] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+  const [selectedMovie, setSelectedMovie] = useState(null); // 선택된 영화 상태 관리
+  const [showModal, setShowModal] = useState(false); // 모달 표시 상태 관리
   const key = import.meta.env.VITE_API_KEY;
 
-  // 실시간 검색 핸들러
   const handleSearch = async (e) => {
     const searchQuery = e.target.value;
     setQuery(searchQuery);
@@ -18,12 +20,21 @@ export default function Search() {
         `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&api_key=${key}&language=ko-KR`
       );
       const data = await response.json();
-      setMovies(data.results); // 검색 결과 저장
-      setShowResults(true); // 검색 결과 모달 표시
+      setMovies(data.results);
+      setShowResults(true);
     } else {
-      setMovies([]); // 검색어가 없으면 결과를 초기화
-      setShowResults(false); // 모달 닫기
+      setMovies([]);
+      setShowResults(false);
     }
+  };
+
+  const handleMovieClick = (movie) => {
+    setSelectedMovie(movie); // 선택된 영화 저장
+    setShowModal(true); // 모달 표시
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false); // 모달 닫기
   };
 
   return (
@@ -32,18 +43,34 @@ export default function Search() {
         type="text"
         placeholder="영화 제목을 입력하세요"
         value={query}
-        onChange={handleSearch} // 입력할 때마다 검색 수행
-        onKeyUp={handleSearch} // 키보드 입력 이벤트
+        onChange={handleSearch}
+        onKeyUp={handleSearch}
       />
+
       {/* 검색 결과 모달 */}
       {showResults && (
         <div className="search-results">
-          {movies.length > 0 ? (
-            movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)
-          ) : (
-            <p>검색 결과가 없습니다.</p>
-          )}
+          <div className="movie-grid">
+            {movies.map((movie) => (
+              <div
+                key={movie.id}
+                className="movie-card-wrapper"
+                onClick={() => handleMovieClick(movie)}
+              >
+                <MovieCard movie={movie} />
+              </div>
+            ))}
+          </div>
         </div>
+      )}
+
+      {/* 영화 정보 모달 */}
+      {showModal && (
+        <Modal
+          show={showModal}
+          onClose={handleCloseModal}
+          movie={selectedMovie}
+        />
       )}
     </div>
   );
